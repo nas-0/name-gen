@@ -1,7 +1,7 @@
-from fastapi import FastAPI
+#from fastapi import FastAPI
 import sqlite3
 
-app = FastAPI()
+#app = FastAPI()
 
 def get_names():
     conn = sqlite3.connect("mydatabase.db")
@@ -21,9 +21,8 @@ def main():
         last_name = row[1]
         language = row[2]
         meaning = row[3]
-        primary_key = row[4]
 
-        print(f"{first_name} {last_name} {language} {meaning} {primary_key}")
+        print(f"{first_name} {last_name} {language} {meaning}")
 
 if __name__ == "__main__":
     main()

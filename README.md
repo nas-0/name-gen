@@ -1,2 +1,2 @@
 # name-gen
-test
+ape

@@ -1,13 +1,29 @@
 from fastapi import FastAPI
+import sqlite3
 
 app = FastAPI()
 
+def get_names():
+    conn = sqlite3.connect("mydatabase.db")
+    cursor = conn.cursor()
+    cursor.execute("Select * FROM NAME")
+    rows = cursor.fetchall()
 
-def return_name(name):
-    return {"first_name": name}
+    conn.close()
 
-@app.get("/names")
-def homepage():
-    name = return_name("sheraz")
-    return name
+    return rows
 
+def main():
+    names = get_names()
+
+    for row in names:
+        first_name = row[0]
+        last_name = row[1]
+        language = row[2]
+        meaning = row[3]
+        primary_key = row[4]
+
+        print(f"{first_name} {last_name} {language} {meaning} {primary_key}")
+
+if __name__ == "__main__":
+    main()

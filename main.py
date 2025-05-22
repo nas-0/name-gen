@@ -1,8 +1,9 @@
-#from fastapi import FastAPI
+from fastapi import FastAPI
 import sqlite3
 
-#app = FastAPI()
+app = FastAPI()
 
+app.get("/get_arabic_name")
 def get_names():
     conn = sqlite3.connect("mydatabase.db")
     cursor = conn.cursor()
@@ -11,18 +12,10 @@ def get_names():
 
     conn.close()
 
-    return rows
-
-def main():
-    names = get_names()
-
-    for row in names:
+    for row in rows:
         first_name = row[0]
         last_name = row[1]
         language = row[2]
         meaning = row[3]
 
         print(f"{first_name} {last_name} {language} {meaning}")
-
-if __name__ == "__main__":
-    main()
